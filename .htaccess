@@ -1,0 +1,48 @@
+
+ErrorDocument 404 /error.php
+
+AddType application/octet-stream .mov .mp3 .zip
+
+
+RewriteEngine On
+
+
+ 
+RewriteRule ^(.*)\.[\d]{10}\.(css|js)$ $1.$2 [L]
+ 
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(([^/]+/)*[^./]+)$ $1.php [L,QSA]
+
+
+
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteRule ^(.*[^/])$ $1 [L,R]
+
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(pt|en|ge)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/?$ corpo.php?lang=$1&url1=$2&url2=$3&url3=$4&url4=$5 [L,QSA]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(pt|en|ge)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/?$ corpo.php?lang=$1&url1=$2&url2=$3&url3=$4 [L,QSA]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(pt|en|ge)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/?$ corpo.php?lang=$1&url1=$2&url2=$3 [L,QSA]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(pt|en|ge)/(users)/?$ user.php?lang=$1&url1=$2 [L,QSA]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(pt|en|ge)/([a-zA-Z0-9_-]+)/?$ corpo.php?lang=$1&url1=$2 [L,QSA]
+
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(pt|en|ge)/?$ index.php?lang=$1 [L,QSA]
+
+
+#não encontrou ficheiro em cima, vai buscar diretamente
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(pt|en|ge)/(([^/]+/)*[^./]+)$ $2.php?lang=$1 [L,QSA]
+
+
