@@ -5,10 +5,7 @@
     	var slider = $(el);
 		// Store a reference to the object
 		$.data(el, "distribute", slider);
-
-		function dowork(){
-
-		}
+ 
 
 		//Initialize
 		dowork();

@@ -8,11 +8,20 @@ error_reporting(E_ALL);
 
 $menus=[0=>["nome"=>"index"],
         1=>["nome"=>"empresa"],
-        2=>["nome"=>"example", "submenus" => [0=>["nome"=>"subexample1"], 1=>["nome"=>"subexample2"], 2=>["nome"=>"subexample3"], 3=>["nome"=>"subexample4"], 4=>["nome"=>"subexample1"], 5=>["nome"=>"subexample2"], 6=>["nome"=>"subexample3"], 7=>["nome"=>"subexample4"]]],
-        3=>["nome"=>"example2"],
-        4=>["nome"=>"example3"],
-        5=>["nome"=>"example4"],
-        6=>["nome"=>"example5"]
+        2=>["nome"=>"example", "submenus" => [0=>["nome"=>"subexample1"], 1=>["nome"=>"subexample2"], 2=>["nome"=>"subexample3"]] ], 3=>["nome"=>"subexample4", 
+            "submenus" => [0=>["nome"=>"subexample1"], 1=>["nome"=>"subexample2"], 2=>["nome"=>"subexample3"], 3=>["nome"=>"subexample4"]]],
+        5=>["nome"=>"example2"],
+        6=>["nome"=>"example3"],
+        7=>["nome"=>"example4"],
+        8=>["nome"=>"example3"],
+        9=>["nome"=>"example4"],
+        10=>["nome"=>"example3"],
+        11=>["nome"=>"example4"],
+        12=>["nome"=>"example3"],
+        13=>["nome"=>"example4"],
+        14=>["nome"=>"example3"],
+        15=>["nome"=>"example4"],
+        16=>["nome"=>"example5"]
 ];
 
     ?>
@@ -26,7 +35,7 @@ $menus=[0=>["nome"=>"index"],
         padding: 0;
         width: 100%;
         height: 100%;
-        box-sizing: border-box; 
+        box-sizing: border-box;
     }
     .menu{
         width: 100%;
@@ -53,9 +62,9 @@ $menus=[0=>["nome"=>"index"],
         </div>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script href="distribute.js" type="text/javascript"></script>
-    
+
         <script>
-                        
+
             //CONFIG
             var classItem = ".submenu";
             var classSubs = ".subsubmenu";
@@ -70,7 +79,7 @@ $menus=[0=>["nome"=>"index"],
             var colsdesktopsmall = 3;
             var colsmobile = 1;
             var previous = false;
-            
+
             $(function(){
                 distribute();
                 $(window).on("resize",function(){
@@ -94,11 +103,11 @@ $menus=[0=>["nome"=>"index"],
                 }
 
                 function clearDistribute(){ destination.html(""); }
-                
+
                 function calcDistribute(cols){
                     var colname;
                     var count=0;
-                    
+
                     if(cols == 1){
                         colname = "divdefault";
                     }else if(cols!=''){
@@ -115,13 +124,13 @@ $menus=[0=>["nome"=>"index"],
                     }
 
                     var atualColumn = 1;
-                    eltmp.find(classItem).each(function(i, el){ /// foreach item 
+                    eltmp.find(classItem).each(function(i, el){ /// foreach item
                         let subitems = $(el).find(classSubs).length;
-                        $(el).clone().appendTo(destination.find(".distribute-subs")[atualColumn-1]); 
+                        $(el).clone().appendTo(destination.find(".distribute-subs")[atualColumn-1]);
                         console.log(destination.find(".distribute-subs")[atualColumn-1]);
                         console.log(atualColumn);
 
-                        console.log("count: " + count); 
+                        console.log("count: " + count);
                         console.log("numitems: " + numitems);
                         console.log("subitems: " + subitems);
                         console.log("conta: " + (subitems*0.5));
